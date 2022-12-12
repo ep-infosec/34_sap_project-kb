@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    buttons = document.getElementsByClassName("selector");
+
+    function toggle(selector) {
+        if (selector.classList.contains("btn-primary")) {
+            selector.classList.replace("btn-primary", "btn-outline-primary");
+        } else {
+            selector.classList.replace("btn-outline-primary", "btn-primary");
+        }
+    }
+
+    function showFromRelevance(relevance) {
+        let commit_cards = document.getElementsByClassName('commit');
+        for (let card of commit_cards) {
+            let commit_relevance = card.dataset.relevances;
+            if (commit_relevance > relevance) {
+                if (card.classList.contains('d-none')) {
+                    card.classList.replace('d-none', 'd-flex')
+                }
+            } else {
+                if (card.classList.contains('d-flex')) {
+                    card.classList.replace('d-flex', 'd-none')
+                }
+            }
+        }
+    }
+
+    for (let b of buttons) {
+        if (b.id == "relevancefilter") {
+            b.addEventListener('click', function () { showFromRelevance(20); })
+        } else if (b.id == "relevancefilter2") {
+            b.addEventListener('click', function () { showFromRelevance(15); })
+        } else if (b.id == "relevancefilter3") {
+            b.addEventListener('click', function () { showFromRelevance(10); })
+        } else if (b.id == "relevancefilter4") {
+            b.addEventListener('click', function () { showFromRelevance(0); })
+        }
+    }
+</script>
